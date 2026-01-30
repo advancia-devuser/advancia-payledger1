@@ -1,5 +1,8 @@
 import crypto from "crypto";
+import dotenv from "dotenv";
 import { logger } from "./logger";
+
+dotenv.config();
 
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY;
 const ALGORITHM = "aes-256-gcm";

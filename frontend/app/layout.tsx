@@ -20,6 +20,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="min-h-screen bg-gray-50">
           {children}
+          {/* AI Chatbot will be globally available */}
+          <div id="ai-chatbot-root" />
         </div>
       </body>
     </html>
