@@ -2,7 +2,7 @@
 import React from 'react';
 // Added CheckCircle2 to imports to fix missing component errors on lines 73, 77, and 81
 import { Shield, Lock, Terminal, Activity, Server, Database, Globe, Bell, CheckCircle2 } from 'lucide-react';
-import { SecurityLog } from '../types';
+import { SecurityLog } from "../lib/types";
 
 const MOCK_LOGS: SecurityLog[] = [
   { id: 'log_1', timestamp: '2024-05-18 14:32:01', event: 'Enterprise API Auth Success', user: 'System (DigitalOcean)', status: 'Success' },

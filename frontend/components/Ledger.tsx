@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Transaction, TransactionStatus } from '../types';
+import { Transaction, TransactionStatus } from "../lib/types";
 import { 
   Filter, 
   Download, 

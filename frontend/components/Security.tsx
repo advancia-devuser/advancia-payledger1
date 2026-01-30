@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Shield, Lock, Eye, FileCheck, AlertTriangle, Terminal, HardDrive, Cpu, CheckCircle2 } from 'lucide-react';
-import { SecurityLog } from '../types';
+import { SecurityLog } from "../lib/types";
 
 const MOCK_LOGS: SecurityLog[] = [
   { id: 'log_1', timestamp: '2024-05-18 14:32:01', event: 'Enterprise API Auth Success', user: 'System (DigitalOcean)', status: 'Success' },

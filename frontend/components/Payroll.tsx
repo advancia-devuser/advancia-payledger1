@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Users, DollarSign, Calendar, CheckCircle2, Clock, Search, Filter, Plus } from 'lucide-react';
-import { Employee } from '../types';
+import { Employee } from "../lib/types";
 
 const MOCK_EMPLOYEES: Employee[] = [
   { id: 'emp_1', name: 'Sarah Chen', role: 'Chief Medical Officer', salary: 18500, lastPaid: '2024-05-01', status: 'Active' },

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Transaction } from '../types';
+import { Transaction } from "../lib/types";
 import { 
   XAxis, 
   YAxis, 

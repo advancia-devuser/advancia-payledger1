@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Wallet, Globe, ArrowUpRight, Copy, ExternalLink, Zap, ShieldCheck, CreditCard } from 'lucide-react';
-import { VaultBalance } from '../types';
+import { VaultBalance } from "../lib/types";
 
 const MOCK_BALANCES: VaultBalance[] = [
   { network: 'Solana', balance: 1420.5, valueUSD: 234382.50, change24h: 4.2, address: 'Advn...9xZ2' },

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { X, Upload, Plus, Camera, Loader2, Sparkles, CheckCircle2 } from 'lucide-react';
-import { Transaction, TransactionType, TransactionStatus } from '../types';
+import { Transaction, TransactionType, TransactionStatus } from "../lib/types";
 import { parseReceipt } from '../services/geminiService';
 
 interface NewTransactionModalProps {
