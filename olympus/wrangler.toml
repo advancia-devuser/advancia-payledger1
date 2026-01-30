@@ -1,0 +1,12 @@
+name = "olympus-ai"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+account_id = "74ecde4d46d4b399c7295cf599d2886b"
+
+# Environment variables (add via Wrangler CLI or dashboard)
+# wrangler secret put GITHUB_TOKEN
+# wrangler secret put ANTHROPIC_API_KEY
+# wrangler secret put GITHUB_REPO
+
+[vars]
+# Non-secret variables can go here

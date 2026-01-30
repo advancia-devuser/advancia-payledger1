@@ -1,0 +1,60 @@
+name: Deploy All Services
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  deploy-backend:
+    uses: ./.github/workflows/deploy-backend.yml
+    secrets: inherit
+
+  deploy-frontend:
+    uses: ./.github/workflows/deploy-frontend.yml
+    secrets: inherit
+    needs: deploy-backend
+
+  deploy-olympus:
+    uses: ./.github/workflows/deploy-olympus.yml
+    secrets: inherit
+
+  verify-deployment:
+    runs-on: ubuntu-latest
+    needs: [deploy-backend, deploy-frontend, deploy-olympus]
+    
+    steps:
+      - name: Verify Backend
+        run: |
+          echo "Checking backend health..."
+          curl -f http://${{ secrets.DO_HOST }}:3001/health
+          echo "✅ Backend is healthy"
+
+      - name: Verify Frontend
+        run: |
+          echo "Checking frontend..."
+          curl -f https://your-app.vercel.app
+          echo "✅ Frontend is accessible"
+
+      - name: Verify Olympus Worker
+        run: |
+          echo "Checking Olympus worker..."
+          curl -f https://olympus-ai.your-account.workers.dev/health
+          echo "✅ Olympus worker is healthy"
+
+      - name: Deployment Summary
+        run: |
+          echo "================================================"
+          echo "🎉 All services deployed successfully!"
+          echo "================================================"
+          echo "Frontend: https://your-app.vercel.app"
+          echo "Backend: http://${{ secrets.DO_HOST }}:3001"
+          echo "Olympus: https://olympus-ai.your-account.workers.dev"
+          echo "================================================"

@@ -1,0 +1,50 @@
+name: Deploy Olympus to Cloudflare Workers
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "olympus/**"
+      - ".github/workflows/deploy-olympus.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Deploy to Cloudflare Workers
+        working-directory: ./olympus
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          # Set secrets
+          echo "${{ secrets.OLYMPUS_GITHUB_TOKEN }}" | wrangler secret put GITHUB_TOKEN
+          echo "${{ secrets.ANTHROPIC_API_KEY }}" | wrangler secret put ANTHROPIC_API_KEY
+          echo "${{ secrets.OLYMPUS_GITHUB_REPO }}" | wrangler secret put GITHUB_REPO
+
+          # Deploy worker
+          wrangler deploy
+
+      - name: Get worker URL
+        working-directory: ./olympus
+        run: |
+          echo "✅ Olympus deployed successfully"
+          echo "Worker URL: https://olympus-ai.your-account.workers.dev"
+
+      - name: Notify deployment failure
+        if: failure()
+        run: echo "❌ Olympus deployment failed"
