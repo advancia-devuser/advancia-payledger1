@@ -3,7 +3,7 @@ name: Deploy Olympus to Cloudflare Workers
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - "olympus/**"
       - ".github/workflows/deploy-olympus.yml"
